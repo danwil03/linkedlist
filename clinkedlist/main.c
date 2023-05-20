@@ -87,6 +87,24 @@ int linkedlist_remove(LinkedList *llptr, int8_t idx) {
     return LINKEDLIST_SUCCESS;
 }
 
+int linkedlist_destroy(LinkedList *llptr) {
+    if(llptr == NULL) {
+        return LINKEDLIST_ERROR;
+    }
+
+    Node *current_node = llptr->head;
+    Node *prev_node = current_node;
+    while(current_node != NULL) {
+        current_node = current_node->next;
+        free(prev_node);
+        prev_node = current_node;
+    }
+
+    llptr->head = NULL;
+
+    return LINKEDLIST_SUCCESS;
+}
+
 int linkedlist_print(LinkedList *llptr) {
     if(llptr == NULL) {
         return LINKEDLIST_ERROR;
@@ -124,6 +142,8 @@ int main() {
 
     assert(linkedlist_remove(linkedlist, 3) == LINKEDLIST_SUCCESS);
     assert(linkedlist_print(linkedlist) == LINKEDLIST_SUCCESS);
+
+    assert(linkedlist_destroy(linkedlist) == LINKEDLIST_SUCCESS);
 
     return 0;
 }
