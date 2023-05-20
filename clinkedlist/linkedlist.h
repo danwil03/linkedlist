@@ -24,6 +24,7 @@ int linkedlist_prepend(LinkedList *llptr, int8_t val);
 int linkedlist_insert(LinkedList *llptr, int8_t val, int8_t idx);
 int linkedlist_lookup(LinkedList *llptr, int8_t target);
 int linkedlist_print(LinkedList *llptr);
+int linkedlist_remove(LinkedList *llptr, int8_t idx);
 
 Node * _linkedlist_new_node(int8_t val);
 
